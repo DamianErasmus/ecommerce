@@ -4,10 +4,13 @@ import { useFormContext, Controller } from "react-hook-form";
 
 const FormInput = ({ name, label, required }) => {
   const { control } = useFormContext();
+  const isError = false;
 
   return (
     <Grid item xs={12} sm={6}>
       <Controller
+        control={control}
+        name={name}
         render={({ field }) => (
           <TextField
             fullWidth
@@ -15,12 +18,11 @@ const FormInput = ({ name, label, required }) => {
             name={name}
             defaultValue=""
             required
-            onChange={(e) => field.onChange(e.target.value)}
             value={field.value}
+            error={isError}
+            onChange={(e) => field.onChange(e.target.value)}
           />
         )}
-        control={control}
-        name={name}
       />
     </Grid>
   );
